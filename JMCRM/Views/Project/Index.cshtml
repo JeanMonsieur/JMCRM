@@ -1,0 +1,69 @@
+﻿@model IEnumerable<JMCRM.Models.Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Search bar -->
+<form asp-controller="Project" asp-action="Index">
+    <div class="col-12 p-5 text-center">
+        <input type="text" name="searchString" id="search"/>
+        <label class="form-label" for="search"></label>
+        <input type="submit" value="Search"/>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Version)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Control)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contacts)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Version)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Control)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contacts)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+            {
+                <h1>Nothing to see here</h1>
+            }
+    </tbody>
+</table>
