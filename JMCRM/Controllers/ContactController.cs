@@ -22,13 +22,13 @@ namespace JMCRM.Controllers
             return View(Contacts);
         }
 
-        // GET - CREATE
+        // CREATE - GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST - CREATE
+        // CREATE - POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult Create(Contact contact)
@@ -36,6 +36,36 @@ namespace JMCRM.Controllers
             if(ModelState.IsValid)
             {
                 this._db.Contact.Add(contact);
+                this._db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(contact);
+        }
+
+        // EDIT - GET
+        public IActionResult Edit(int? ContactId)
+        {
+            if(ContactId == null)
+            {
+                return NotFound();
+            }
+            Contact contact = _db.Contact.Find(ContactId);
+
+            if(contact == null)
+            {
+                return NotFound();
+            }
+            return View(contact);
+        }
+
+        // EDIT - POST
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                this._db.Contact.Update(contact);
                 this._db.SaveChanges();
                 return RedirectToAction("Index");
             }

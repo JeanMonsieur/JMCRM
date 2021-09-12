@@ -35,11 +35,13 @@ namespace JMCRM.Controllers
             return View(allSelectedProjects);
         }
 
+        // CREATE - GET
         public IActionResult Create()
         {
             return View();
         }
 
+        // CREATE - POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult Create(Project project)
@@ -53,7 +55,7 @@ namespace JMCRM.Controllers
             return View(project);
         }
 
-        // GET 
+        // EDIT - GET
         public IActionResult Edit(string ProjectId)
         {
             if(ProjectId != null)
@@ -67,7 +69,7 @@ namespace JMCRM.Controllers
             return View("Index");
         }
 
-        // POST
+        // EDIT - POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult Edit(Project project)
