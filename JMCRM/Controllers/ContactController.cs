@@ -71,5 +71,36 @@ namespace JMCRM.Controllers
             }
             return View(contact);
         }
+
+        // DELETE - GET
+        public IActionResult Delete(int? ContactId)
+        {
+            if(ContactId == null)
+            {
+                return NotFound();
+            }
+            Contact contact = _db.Contact.Find(ContactId);
+            if(contact == null)
+            {
+                return NotFound();
+            }
+            return View(contact);
+        }
+
+        // DELETE - POST
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult DeletePost(int? contactId)
+        {
+            Contact contact = this._db.Contact.Find(contactId);
+            if (contact == null)
+            {
+                return NotFound();
+            }
+            this._db.Contact.Remove(contact);
+            this._db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }

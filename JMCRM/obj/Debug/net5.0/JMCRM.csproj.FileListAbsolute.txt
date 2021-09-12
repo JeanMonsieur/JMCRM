@@ -148,3 +148,4 @@ C:\Users\JeanMonsieur\source\repos\JMCRM\JMCRM\obj\Debug\net5.0\Razor\Views\Proj
 C:\Users\JeanMonsieur\source\repos\JMCRM\JMCRM\obj\Debug\net5.0\Razor\Views\Project\Create.cshtml.g.cs
 C:\Users\JeanMonsieur\source\repos\JMCRM\JMCRM\obj\Debug\net5.0\Razor\Views\Project\Edit.cshtml.g.cs
 C:\Users\JeanMonsieur\source\repos\JMCRM\JMCRM\obj\Debug\net5.0\Razor\Views\Contact\Edit.cshtml.g.cs
+C:\Users\JeanMonsieur\source\repos\JMCRM\JMCRM\obj\Debug\net5.0\Razor\Views\Contact\Delete.cshtml.g.cs
