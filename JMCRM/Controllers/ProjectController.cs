@@ -35,13 +35,11 @@ namespace JMCRM.Controllers
             return View(allSelectedProjects);
         }
 
-        // GET - PROJECT
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST - PROJECT
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public IActionResult Create(Project project)
@@ -55,9 +53,32 @@ namespace JMCRM.Controllers
             return View(project);
         }
 
-        public IActionResult Privacy()
+        // GET 
+        public IActionResult Edit(string ProjectId)
         {
-            return View();
+            if(ProjectId != null)
+            {
+                IEnumerable<Project> dbProjects = from projects in _db.Project
+                                                  select projects;
+                Project projectToEdit = dbProjects.Where(projects => projects.ProjectId == ProjectId).First();
+
+                return View(projectToEdit);
+            }
+            return View("Index");
+        }
+
+        // POST
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                this._db.Project.Update(project);
+                this._db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(project);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
