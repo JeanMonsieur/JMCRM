@@ -15,6 +15,6 @@ namespace JMCRM.Models
         [Required]
         public bool Control { get; set; }
         public List<Contact> Contacts { get; set; }
-        // public List<Event> Events { get; set; }
+        public List<Storyline> Storylines { get; set; }
     }
 }
