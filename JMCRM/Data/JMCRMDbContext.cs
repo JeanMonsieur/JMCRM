@@ -15,5 +15,6 @@ namespace JMCRM.Data
 
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Project> Project { get; set; }
+        public DbSet<JMCRM.Models.Storyline> Storyline { get; set; }
     }
 }

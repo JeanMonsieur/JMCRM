@@ -1,0 +1,43 @@
+﻿@model IEnumerable<JMCRM.Models.Storyline>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Storylines for </h1>
+
+<p>
+    <a asp-action="Create" asp-route-ProjectId="@Model.">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.StorylineId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.StorylineId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.StorylineId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <p>No Storylines yet</p>
+        }
+    </tbody>
+</table>

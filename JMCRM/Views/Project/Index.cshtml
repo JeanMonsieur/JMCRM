@@ -42,16 +42,15 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProjectId)
+                        <a asp-controller="Storyline" asp-action="Index" asp-route-ProjectId="@item.ProjectId">
+                            @Html.DisplayFor(modelItem => item.ProjectId)
+                        </a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Version)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Control)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Contacts)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-ProjectId="@item.ProjectId">Edit</a>
