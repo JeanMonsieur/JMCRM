@@ -15,5 +15,16 @@ namespace JMCRM.Models
         public string ProjectId { get; set; }
         public string Title { get; set; }
         public List<Event> Events { get; set; }
+
+        public Storyline()
+        {
+
+        }
+
+        public Storyline(string projectId)
+        {
+            this.ProjectId = projectId;
+            this.Events = new List<Event>() { };
+        }
     }
 }

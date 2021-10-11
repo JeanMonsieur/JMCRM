@@ -1,27 +1,33 @@
-﻿@model IEnumerable<JMCRM.Models.Storyline>
+﻿@model JMCRM.Models.Project
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Storylines for </h1>
+<h1>Storylines</h1>
+
+@{ 
+    ViewBag.Title = "Title";
+}
+
+
 
 <p>
-    <a asp-action="Create" asp-route-ProjectId="@Model.">Create New</a>
+    <a asp-controller="Storyline" asp-action="Create" asp-route-projectId="@Model.ProjectId">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Storylines)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @if (Model != null)
+        @if (Model.Storylines != null && Model.Storylines.Count > 0)
         {
-            @foreach (var item in Model)
+            @foreach (var item in Model.Storylines)
             {
                 <tr>
                     <td>

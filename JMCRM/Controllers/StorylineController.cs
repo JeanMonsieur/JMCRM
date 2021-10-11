@@ -1,6 +1,7 @@
 ﻿using JMCRM.Data;
 using JMCRM.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,26 +19,36 @@ namespace JMCRM.Controllers
         }
         public IActionResult Index(string projectId)
         {
-            IEnumerable<Storyline> allStorylines = from storylinesDB in _db.Storyline
-                                                   select storylinesDB;
+            IEnumerable<Project> allProjects = from projectDB in _db.Project
+                                               select projectDB;
+            Project currentProject = allProjects.Where(p => p.ProjectId == projectId).First();
+            _db.Project.Include(stories => stories.Storylines).ToList();
 
-            allStorylines = allStorylines.Where(storylinesDB => storylinesDB.ProjectId == projectId);
-
-            return View(allStorylines);
+            return View(currentProject);
         }
 
         // GET - CREATE
         public IActionResult Create(string projectId)
         {
-            return View(projectId);
+            IEnumerable<Project> allProjects = from projectDB in _db.Project 
+                                               select projectDB;
+
+            return View(new Storyline(projectId));
         }
 
         // POST - CREATE
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult CreatePost(string projectId)
+        public IActionResult CreatePost(Storyline storyline)
         {
-            return View(projectId);
+            if(ModelState.IsValid)
+            {
+                Project project = _db.Project.Find(storyline.ProjectId);
+                project.Storylines.Add(storyline); 
+                _db.SaveChanges();
+                return RedirectToAction("Index", new { projectId = storyline.ProjectId });
+            }
+            return View("Index", new { projectId = storyline.ProjectId });
         }
     }
 }

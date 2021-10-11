@@ -16,5 +16,10 @@ namespace JMCRM.Models
         public bool Control { get; set; }
         public List<Contact> Contacts { get; set; }
         public List<Storyline> Storylines { get; set; }
+
+        public Project()
+        {
+            this.Storylines = new List<Storyline>() { };
+        }
     }
 }
