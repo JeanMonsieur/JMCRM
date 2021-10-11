@@ -7,36 +7,37 @@
 <!-- Search bar -->
 <form asp-controller="Project" asp-action="Index">
     <div class="col-12 p-5 text-center">
-        <input type="text" name="searchString" id="search"/>
+        <input type="text" name="searchString" id="search" />
         <label class="form-label" for="search"></label>
-        <input type="submit" value="Search"/>
+        <input type="submit" value="Search" />
     </div>
 </form>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Version)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Control)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contacts)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null)
-        {
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Version)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Control)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacts)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
 
             @foreach (var item in Model)
             {
@@ -57,10 +58,11 @@
                     </td>
                 </tr>
             }
-        }
-        else
-            {
-                <h1>Nothing to see here</h1>
-            }
-    </tbody>
-</table>
+
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Nothing to see here</h1>
+}

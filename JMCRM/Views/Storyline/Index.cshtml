@@ -6,27 +6,23 @@
 
 <h1>Storylines</h1>
 
-@{ 
-    ViewBag.Title = "Title";
-}
-
-
-
 <p>
     <a asp-controller="Storyline" asp-action="Create" asp-route-projectId="@Model.ProjectId">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Storylines)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Storylines != null && Model.Storylines.Count > 0)
-        {
+
+@if (Model.Storylines != null && Model.Storylines.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Storylines)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
             @foreach (var item in Model.Storylines)
             {
                 <tr>
@@ -40,10 +36,15 @@
                     </td>
                 </tr>
             }
-        }
-        else
-        {
-            <p>No Storylines yet</p>
-        }
-    </tbody>
-</table>
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Storylines yet</p>
+}
+
+<div>
+    <a asp-controller="Project" asp-action="Index">Back to projects</a>
+</div>
